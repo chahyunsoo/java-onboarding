@@ -9,15 +9,15 @@ class Problem1 {
     public static final int EXCEPTIONS = -1;
 
     static class PageGapException extends Exception {
-        int pageGapException() {
-            return EXCEPTIONS;
-        }
+//        int pageGapException() {
+//            return EXCEPTIONS;
+//        }
     }
 
     static class OverPageException extends Exception {
-        int overPageException() {
-            return EXCEPTIONS;
-        }
+//        int overPageException() {
+//            return EXCEPTIONS;
+//        }
     }
 
 
@@ -67,9 +67,11 @@ class Problem1 {
             int answer = returnResultNumber(pobi, crong);
             return answer;
         } catch (PageGapException exception) {
-            return exception.pageGapException();
+//            return exception.pageGapException();
+            return EXCEPTIONS;
         } catch (OverPageException exception) {
-            return exception.overPageException();
+//            return exception.overPageException();
+            return EXCEPTIONS;
         }
     }
 
