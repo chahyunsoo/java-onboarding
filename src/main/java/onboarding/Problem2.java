@@ -1,20 +1,27 @@
 package onboarding;
 
+import java.util.Stack;
+
 public class Problem2 {
     static final int MAX_LENGTH = 1000;
     static final int MIN_LENGTH = 1;
     static final char SMALL_LETTER_FIRST = 'a';
     static final char SMALL_LETTER_LAST = 'z';
+    public static Stack<Character> stack = new Stack<>();
+    public static StringBuilder sb = new StringBuilder();
+    public static String answer = "";
 
     public static String solution(String cryptogram) {
         try {
             validateAllConstraints(cryptogram);
+            checkAndDeleteDuplicatedLetters(cryptogram);
+
+
 
         } catch (Exception e) {
             e.printStackTrace();
         }
-
-        return cryptogram;
+        return answer;
     }
 
     /**
@@ -46,6 +53,7 @@ public class Problem2 {
         }
     }
 
+
     /**
      * 알파벳 하나가 소문자인지 확인
      * @param letter
@@ -55,4 +63,30 @@ public class Problem2 {
             throw new IllegalArgumentException();
         }
     }
+
+    /**
+     * cryptogram 문자 배열을 돌면서 중복된 문자 제거하는 기능
+     * @param cryptogram
+     */
+    public static void checkAndDeleteDuplicatedLetters(String cryptogram) {
+        char[] letters = cryptogram.toCharArray();
+        for (char letter : letters) {
+            deleteDuplicatedLetter(letter);
+        }
+    }
+
+    /**
+     * 입력된 문자 하나가 스택이 비어있지 않거나 스택에 젤 위에 있는 문자와 같으면 pop
+     * 그렇지 않으면, push
+     * @param letter
+     */
+    private static void deleteDuplicatedLetter(char letter) {
+        if (!stack.isEmpty() && stack.peek() == letter) {
+            stack.pop();
+            return;
+        }
+        stack.push(letter);
+    }
+
+
 }
